@@ -3,6 +3,7 @@ import { Menubar } from "primereact/menubar";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primeicons/primeicons.css";
+import gargantisLogo1 from "../asset/gargantisLogo1.png";
 
 export const MenuBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,20 +24,33 @@ export const MenuBar = () => {
   }, []);
 
   const start = (
-    <img
-      alt="logo"
-      src="logo.png"
-      height="40"
-      style={{ marginRight: "1rem" }}
-    />
+    <>
+      {" "}
+      <img
+        alt="logo"
+        src={gargantisLogo1}
+        height="100"
+        style={{ marginRight: "1rem" }}
+      />
+    </>
   );
   const end = (
     <div className="flex flex-wrap justify-content-center">
       {" "}
-      <div className="border-round-3xl w-12rem h-4rem m-2 bg-primary font-bold flex align-items-center justify-content-center">
+      <div
+        style={{
+          background: "linear-gradient(to right, #dc4699,#59499e)",
+        }}
+        className="border-round-3xl w-12rem h-3rem m-2 bg-primary font-bold flex align-items-center justify-content-center"
+      >
         0312 1234567
       </div>
-      <div className="border-round-3xl text-base w-15rem h-4rem m-2 bg-primary font-bold flex align-items-center justify-content-center">
+      <div
+        style={{
+          background: "linear-gradient(to right, #dc4699,#59499e)",
+        }}
+        className="border-round-3xl text-base w-15rem h-3rem m-2 bg-primary font-bold flex align-items-center justify-content-center"
+      >
         info@gargantistasarim.com
       </div>
     </div>
@@ -45,17 +59,20 @@ export const MenuBar = () => {
   const menubarStyle: React.CSSProperties = {
     position: "fixed",
     top: 0,
-    border: "none",
+    left: 0,
     width: "100%",
     zIndex: 1000,
-    backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.8)" : "white",
-    boxShadow: isScrolled ? "0px 2px 4px rgba(0, 0, 0, 0.1)" : "none",
-    transition: "background-color 0.3s ease, box-shadow 0.3s ease",
+    border: "none",
+    backgroundColor: `rgba(255, 255, 255, ${isScrolled ? 0.1 : 1})`,
+    boxShadow: isScrolled ? "0 4px 8px rgba(0, 0, 0, 0.1)" : "none",
+    transition: "all 0.3s ease-in-out",
+    backdropFilter: isScrolled ? "blur(10px)" : "none", // Adds a modern glassy effect
+    WebkitBackdropFilter: isScrolled ? "blur(10px)" : "none", // Safari compatibility
   };
 
   return (
     <div style={menubarStyle}>
-      <Menubar start={start} end={end} />
+      <Menubar start={start} end={end} className="border-none bg-white" />
     </div>
   );
 };
